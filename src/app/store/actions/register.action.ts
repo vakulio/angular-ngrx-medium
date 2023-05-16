@@ -1,9 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '../actionTypes';
+import { IUserReq } from 'src/app/shared/types/registerReq.interface';
 
 export const registerAction = createAction(
   ActionTypes.REGISTER,
-  props<{ username: string; email: string; password: string }>()
+  props<IUserReq>()
 );
 
 export const registerFailure = createAction(
