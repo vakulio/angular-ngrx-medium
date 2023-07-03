@@ -1,4 +1,4 @@
-export interface IUserReq {
+export interface IRegReq {
   user: {
     username: string;
     email: string;

@@ -1,10 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '../actionTypes';
-import { IUserReq } from 'src/app/shared/types/registerReq.interface';
+import { IRegReq } from 'src/app/shared/types/registerReq.interface';
 
 export const registerAction = createAction(
   ActionTypes.REGISTER,
-  props<IUserReq>()
+  props<IRegReq>()
 );
 
 export const registerFailure = createAction(
