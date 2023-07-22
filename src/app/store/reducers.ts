@@ -1,15 +1,19 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { IAuthState } from '../shared/types/authState.interface';
-import { registerAction } from './actions/register.action';
-import { state } from '@angular/animations';
+import { registerAction, registerFailure, registerSuccess } from './actions/register.action';
 
 const initialState: IAuthState = {
   isSubmitting: false,
+  currentUser: null,
+  isLoggedIn: null,
+  validationErrors: null,
 };
 
 const authReducer = createReducer(
   initialState,
-  on(registerAction, (state): IAuthState => ({ ...state, isSubmitting: true }))
+  on(registerAction, (state): IAuthState => ({ ...state, isSubmitting: true, validationErrors: null })),
+  on(registerSuccess, (state, action): IAuthState => ({ ...state, isSubmitting: false, isLoggedIn: true, currentUser: action.currentUser, validationErrors: null })),
+  on(registerFailure, (state, action): IAuthState => ({ ...state, isSubmitting: false, validationErrors: action.errors}))
 );
 
 export function reducers(state: IAuthState, action: Action) {

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { IRegReq } from '../shared/types/registerReq.interface';
 import { ICurrentUser } from '../shared/types/currentUser.interface';
 import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { IAuthResponse } from '../shared/types/authResponse.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',

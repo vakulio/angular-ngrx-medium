@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
+import { IRegReq } from 'src/app/shared/types/registerReq.interface';
 import { registerAction } from 'src/app/store/actions/register.action';
 import { isSubmittingSelector } from 'src/app/store/selectors';
 
@@ -41,10 +42,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSumbit(): void {
-    this.store.dispatch(registerAction(this.form.value));
-    this.authService.register(this.form.value).subscribe({
-      next: (user: ICurrentUser) => console.log(user),
-      error: (err) => console.log(err)
-    })
+    const request: IRegReq = {
+      user: this.form.value
+    }
+    this.store.dispatch(registerAction({request}));
   }
 }
