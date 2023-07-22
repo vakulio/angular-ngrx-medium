@@ -1,45 +1,40 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  registerAction,
-  registerFailure,
-  registerSuccess,
-} from './register.action';
 import { AuthService } from 'src/app/services/auth.service';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from 'src/app/services/persistance.service';
 import { Router } from '@angular/router';
+import { loginAction, loginFailure, loginSuccess } from './login.action';
 
 @Injectable()
-export class RegisterEffect {
+export class LoginEffect {
   private _actions$ = inject(Actions);
   private _authService = inject(AuthService);
   private _persistanceService = inject(PersistanceService);
   private _router = inject(Router);
-  register$ = createEffect(() =>
+  login$ = createEffect(() =>
     this._actions$.pipe(
-      ofType(registerAction),
+      ofType(loginAction),
       switchMap(({ request }) =>
-        this._authService.register(request).pipe(
+        this._authService.login(request).pipe(
           map((currentUser: ICurrentUser) => {
-            // window.localStorage.setItem('accessToken', currentUser.token)
             this._persistanceService.set('accessToken', currentUser.token);
-            return registerSuccess({ currentUser });
+            return loginSuccess({ currentUser });
           }),
           catchError((errRes: HttpErrorResponse) =>
-            of(registerFailure({ errors: errRes.error.errors }))
+            of(loginFailure({ errors: errRes.error.errors }))
           )
         )
       )
     )
   );
 
-  redirectAfterRegister$ = createEffect(
+  redirectAfterLogin$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(registerSuccess),
+        ofType(loginSuccess),
         tap(() => {
           console.log('Success');
           this._router.navigateByUrl('/');

@@ -1,20 +1,20 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { IBackendErr } from 'src/app/shared/types/backendErrors';
-import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
+import { ILogReq } from 'src/app/shared/types/loginReq.interface';
 import { IRegReq } from 'src/app/shared/types/registerReq.interface';
-import { registerAction } from 'src/app/store/actions/register.action';
+import { loginAction } from 'src/app/store/actions/login.action';
 import { isSubmittingSelector, validationErrorsSelector } from 'src/app/store/selectors';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
   backendErrors$: Observable<IBackendErr | null>;
@@ -33,21 +33,15 @@ export class RegisterComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this._fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      password: [
-        '',
-        Validators.pattern(
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
-        ),
-      ],
+      email: [''],
+      password: [''],
     });
   }
 
   onSumbit(): void {
-    const request: IRegReq = {
+    const request: ILogReq = {
       user: this.form.value
     }
-    this.store.dispatch(registerAction({request}));
+    this.store.dispatch(loginAction({request}));
   }
 }
