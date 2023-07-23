@@ -95,7 +95,7 @@ const authReducer = createReducer(
   ),
   on(
     getCurrentUserFailure,
-    (state, action): IAuthState => ({
+    (state): IAuthState => ({
       ...state,
       isLoading: false,
       isLoggedIn: false,

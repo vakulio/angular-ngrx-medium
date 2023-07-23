@@ -8,7 +8,7 @@ describe('BannerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BannerComponent]
+      imports: [BannerComponent],
     });
     fixture = TestBed.createComponent(BannerComponent);
     component = fixture.componentInstance;

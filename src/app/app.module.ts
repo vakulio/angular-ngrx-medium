@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -28,8 +28,9 @@ import { GlobalFeedModule } from './global-feed/global-feed.module';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ router: routerReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreRouterConnectingModule.forRoot(),
     TopbarComponent,
     GlobalFeedModule,
   ],

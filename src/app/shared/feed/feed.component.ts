@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { getFeedAction } from 'src/app/global-feed/store/actions/getFeed.action';
 import { IGetFeedRes } from '../types/article.interface';
 import {
@@ -8,10 +8,13 @@ import {
   feedSelector,
   isLoadingSelector,
 } from 'src/app/global-feed/store/selectors';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { LoadingComponent } from '../loading/loading.component';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { environment } from 'src/environments/environment.development';
+import queryString from 'query-string';
 
 @Component({
   selector: 'mcrx-feed[apiUrl]',
@@ -25,9 +28,11 @@ import { LoadingComponent } from '../loading/loading.component';
     RouterLink,
     ErrorMessageComponent,
     LoadingComponent,
+    PaginationComponent,
+    DatePipe,
   ],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
   @Input({
     required: true,
     alias: 'apiUrl',
@@ -36,21 +41,47 @@ export class FeedComponent implements OnInit {
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>;
   data$: Observable<IGetFeedRes | null>;
-
   private store = inject(Store);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  limit = environment.limit;
+  baseUrl = '';
+  queryParamsSubscription: Subscription;
+  currentPage: number;
 
   ngOnInit(): void {
     this.initializeValues();
+    this.initializeListeners();
     this.fetchData();
+  }
+
+  ngOnDestroy(): void {
+    this.queryParamsSubscription.unsubscribe();
+  }
+
+  initializeListeners() {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(
+      (params: Params) => {
+        this.currentPage = Number(params['page'] || 1);
+        this.fetchData();
+      }
+    );
   }
 
   initializeValues(): void {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
     this.data$ = this.store.pipe(select(feedSelector));
+    this.baseUrl = this.router.url.split('?')[0];
   }
 
   fetchData(): void {
-    this.store.dispatch(getFeedAction({ url: this.apiUrlProps }));
+    const offset = this.currentPage * this.limit - this.limit;
+    const parsedUrl = queryString.parseUrl(this.apiUrlProps);
+    const stringifiedUrl = queryString.stringifyUrl({
+      url: parsedUrl.url,
+      query: { ...parsedUrl.query, offset, limit: this.limit },
+    });
+    this.store.dispatch(getFeedAction({ url: stringifiedUrl }));
   }
 }

@@ -1,4 +1,4 @@
-<mcrx-loading></mcrx-loading>
+<mcrx-loading *ngIf="isLoading$ | async"></mcrx-loading>
 <mcrx-error-message *ngIf="error$ | async"></mcrx-error-message>
 <div *ngIf="data$ | async">
   <article
@@ -13,7 +13,8 @@
       <a [routerLink]="['/profiles', article.author.username]">
         {{ article.author.username }}
       </a>
-      <span class="date">{{ article.createdAt }}</span>
+      &nbsp;
+      <span class="date">{{ article.createdAt | date }}</span>
     </div>
     <div class="pull-xs-right">ADD TO FAVORITES</div>
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
@@ -22,5 +23,9 @@
       TAGS
     </a>
   </article>
-  PAGINATION
+  <mcrx-pagination
+    [total]="(data$ | async)?.articlesCount"
+    [limit]="limit"
+    [url]="baseUrl"
+    [currentPage]="currentPage"></mcrx-pagination>
 </div>
