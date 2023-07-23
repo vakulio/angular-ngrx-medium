@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,10 +9,16 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LoginComponent } from './src/app/auth/components/login/login.component';
 import { TopbarComponent } from "./shared/topbar/topbar.component";
+import { PersistanceService } from './services/persistance.service';
+import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent],
-    providers: [],
+    providers: [PersistanceService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

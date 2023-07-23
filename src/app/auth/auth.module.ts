@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { RegisterEffect } from '../store/actions/register.effect';
 import { LoginEffect } from '../store/actions/login.effect';
 import { LoginComponent } from './components/login/login.component';
+import { GetCurrentUserEffect } from '../store/actions/getCurrentUser.effect';
 
 const routes = [
   {
@@ -30,7 +31,7 @@ const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forRoot([RegisterEffect, LoginEffect]),
+    EffectsModule.forRoot([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
     BackendErrorMessagesComponent
   ],
   providers: [AuthService],

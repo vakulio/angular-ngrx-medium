@@ -9,12 +9,12 @@ export const loginAction = createAction(
   props<{request: ILogReq}>()
 );
 
-export const loginFailure = createAction(
+export const loginFailureAction = createAction(
   ActionTypes.LOGIN_FAILURE,
   props<{ errors: IBackendErr }>()
 );
 
-export const loginSuccess = createAction(
+export const loginSuccessAction = createAction(
   ActionTypes.LOGIN_SUCCESS,
   props<{ currentUser: ICurrentUser }>()
 );

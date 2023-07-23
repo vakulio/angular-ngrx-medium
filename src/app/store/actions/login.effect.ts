@@ -6,7 +6,7 @@ import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from 'src/app/services/persistance.service';
 import { Router } from '@angular/router';
-import { loginAction, loginFailure, loginSuccess } from './login.action';
+import { loginAction, loginFailureAction, loginSuccessAction } from './login.action';
 
 @Injectable()
 export class LoginEffect {
@@ -21,10 +21,10 @@ export class LoginEffect {
         this._authService.login(request).pipe(
           map((currentUser: ICurrentUser) => {
             this._persistanceService.set('accessToken', currentUser.token);
-            return loginSuccess({ currentUser });
+            return loginSuccessAction({ currentUser });
           }),
           catchError((errRes: HttpErrorResponse) =>
-            of(loginFailure({ errors: errRes.error.errors }))
+            of(loginFailureAction({ errors: errRes.error.errors }))
           )
         )
       )
@@ -34,7 +34,7 @@ export class LoginEffect {
   redirectAfterLogin$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(loginSuccess),
+        ofType(loginSuccessAction),
         tap(() => {
           console.log('Success');
           this._router.navigateByUrl('/');
