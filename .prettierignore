@@ -1,0 +1,7 @@
+.eslintrc.json
+.prettierrc
+angular.json
+package-lock.json
+package.json
+tsconfig.app.json
+tsconfig.spec.json

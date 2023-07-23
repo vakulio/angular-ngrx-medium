@@ -32,7 +32,7 @@ const routes = [
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forRoot([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
-    BackendErrorMessagesComponent
+    BackendErrorMessagesComponent,
   ],
   providers: [AuthService],
 })

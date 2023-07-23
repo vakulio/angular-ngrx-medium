@@ -6,7 +6,7 @@ import { IBackendErr } from 'src/app/shared/types/backendErrors';
 
 export const registerAction = createAction(
   ActionTypes.REGISTER,
-  props<{request: IRegReq}>()
+  props<{ request: IRegReq }>()
 );
 
 export const registerFailure = createAction(

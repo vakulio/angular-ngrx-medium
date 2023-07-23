@@ -6,17 +6,31 @@
         <a [routerLink]="['/register']">Need an account?</a>
       </p>
 
-      <app-backend-error-messages *ngIf="backendErrors$ | async" [backendErrors]="backendErrors$ | async"></app-backend-error-messages>
+      <app-backend-error-messages
+        *ngIf="backendErrors$ | async"
+        [backendErrors]="backendErrors$ | async"></app-backend-error-messages>
       <form [formGroup]="form" (ngSubmit)="onSumbit()">
         <fieldset>
           <fieldset class="form-group">
-            <input type="text" class="form-control form-control-lg" placeholder="Email" formControlName="email">
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Email"
+              formControlName="email" />
           </fieldset>
           <fieldset class="form-group">
-            <input type="password" class="form-control form-control-lg" placeholder="Password"
-              formControlName="password">
+            <input
+              type="password"
+              class="form-control form-control-lg"
+              placeholder="Password"
+              formControlName="password" />
           </fieldset>
-          <Button class="btn btn-lg btn-primary pull-xs-right" type="submit" [disabled]="isSubmitting$ | async">Sign In</Button>
+          <Button
+            class="btn btn-lg btn-primary pull-xs-right"
+            type="submit"
+            [disabled]="isSubmitting$ | async"
+            >Sign In</Button
+          >
         </fieldset>
       </form>
     </div>

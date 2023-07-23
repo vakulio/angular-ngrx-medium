@@ -12,7 +12,6 @@ export class PersistanceService {
     }
   }
 
-
   get(key: string) {
     try {
       return JSON.parse(localStorage.getItem(key));

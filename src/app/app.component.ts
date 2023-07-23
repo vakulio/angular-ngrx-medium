@@ -7,9 +7,9 @@ import { getCurrentUserAction } from './store/actions/getCurrentUser.action';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  store = inject(Store)
+  store = inject(Store);
 
   ngOnInit(): void {
-      this.store.dispatch(getCurrentUserAction())
+    this.store.dispatch(getCurrentUserAction());
   }
 }

@@ -7,7 +7,10 @@ import { IBackendErr } from 'src/app/shared/types/backendErrors';
 import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
 import { IRegReq } from 'src/app/shared/types/registerReq.interface';
 import { registerAction } from 'src/app/store/actions/register.action';
-import { isSubmittingSelector, validationErrorsSelector } from 'src/app/store/selectors';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +22,11 @@ export class RegisterComponent implements OnInit {
   isSubmitting$: Observable<boolean>;
   backendErrors$: Observable<IBackendErr | null>;
 
-  constructor(private _fb: FormBuilder, private store: Store, private authService: AuthService) {}
+  constructor(
+    private _fb: FormBuilder,
+    private store: Store,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -28,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   initializeForm(): void {
@@ -46,8 +53,8 @@ export class RegisterComponent implements OnInit {
 
   onSumbit(): void {
     const request: IRegReq = {
-      user: this.form.value
-    }
-    this.store.dispatch(registerAction({request}));
+      user: this.form.value,
+    };
+    this.store.dispatch(registerAction({ request }));
   }
 }

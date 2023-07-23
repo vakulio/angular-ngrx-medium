@@ -19,21 +19,16 @@ export class AuthService {
 
   register(data: IRegReq): Observable<ICurrentUser> {
     const url = `${environment.apiUrl}/users`;
-    return this.http
-      .post<IAuthResponse>(url, data)
-      .pipe(map(this.getUser));
+    return this.http.post<IAuthResponse>(url, data).pipe(map(this.getUser));
   }
 
   login(data: ILogReq): Observable<ICurrentUser> {
     const url = `${environment.apiUrl}/users/login`;
-    return this.http
-      .post<IAuthResponse>(url, data)
-      .pipe(map(this.getUser));
+    return this.http.post<IAuthResponse>(url, data).pipe(map(this.getUser));
   }
 
   getCurrentUser(): Observable<ICurrentUser> {
     const url = `${environment.apiUrl}/user`;
     return this.http.get(url).pipe(map(this.getUser));
-
   }
 }

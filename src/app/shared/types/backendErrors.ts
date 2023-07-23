@@ -1,3 +1,3 @@
 export interface IBackendErr {
-  [key: string]: string
+  [key: string]: string;
 }

@@ -6,7 +6,7 @@ import { ILogReq } from 'src/app/shared/types/loginReq.interface';
 
 export const loginAction = createAction(
   ActionTypes.LOGIN,
-  props<{request: ILogReq}>()
+  props<{ request: ILogReq }>()
 );
 
 export const loginFailureAction = createAction(

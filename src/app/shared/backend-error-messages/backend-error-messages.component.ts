@@ -7,18 +7,17 @@ import { NgFor } from '@angular/common';
   templateUrl: './backend-error-messages.component.html',
   styleUrls: ['./backend-error-messages.component.scss'],
   standalone: true,
-  imports: [NgFor]
+  imports: [NgFor],
 })
 export class BackendErrorMessagesComponent implements OnInit {
   @Input('backendErrors') backendErrorsProps: IBackendErr;
 
-  errorMessages: string[]
+  errorMessages: string[];
 
   ngOnInit(): void {
-      this.errorMessages = Object.keys(this.backendErrorsProps).map(key => {
-          const message = this.backendErrorsProps[key]
-          return `${key} ${message}`
-        }
-      )
+    this.errorMessages = Object.keys(this.backendErrorsProps).map(key => {
+      const message = this.backendErrorsProps[key];
+      return `${key} ${message}`;
+    });
   }
 }

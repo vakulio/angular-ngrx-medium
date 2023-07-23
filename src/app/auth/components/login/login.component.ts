@@ -7,19 +7,26 @@ import { IBackendErr } from 'src/app/shared/types/backendErrors';
 import { ILogReq } from 'src/app/shared/types/loginReq.interface';
 import { IRegReq } from 'src/app/shared/types/registerReq.interface';
 import { loginAction } from 'src/app/store/actions/login.action';
-import { isSubmittingSelector, validationErrorsSelector } from 'src/app/store/selectors';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
   backendErrors$: Observable<IBackendErr | null>;
 
-  constructor(private _fb: FormBuilder, private store: Store, private authService: AuthService) {}
+  constructor(
+    private _fb: FormBuilder,
+    private store: Store,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -28,7 +35,7 @@ export class LoginComponent {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   initializeForm(): void {
@@ -40,8 +47,8 @@ export class LoginComponent {
 
   onSumbit(): void {
     const request: ILogReq = {
-      user: this.form.value
-    }
-    this.store.dispatch(loginAction({request}));
+      user: this.form.value,
+    };
+    this.store.dispatch(loginAction({ request }));
   }
 }

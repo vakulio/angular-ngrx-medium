@@ -6,7 +6,11 @@ import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from 'src/app/services/persistance.service';
 import { loginFailureAction, loginSuccessAction } from './login.action';
-import { getCurrentUserAction, getCurrentUserFailure, getCurrentUserSuccess } from './getCurrentUser.action';
+import {
+  getCurrentUserAction,
+  getCurrentUserFailure,
+  getCurrentUserSuccess,
+} from './getCurrentUser.action';
 
 @Injectable()
 export class GetCurrentUserEffect {
@@ -18,19 +22,16 @@ export class GetCurrentUserEffect {
       ofType(getCurrentUserAction),
       switchMap(() => {
         const token = this._persistanceService.get('accessToken');
-        if(!token) {
-          return of(getCurrentUserFailure())
+        if (!token) {
+          return of(getCurrentUserFailure());
         }
         return this._authService.getCurrentUser().pipe(
           map((currentUser: ICurrentUser) => {
             return getCurrentUserSuccess({ currentUser });
           }),
-          catchError((errRes: HttpErrorResponse) =>
-            of(getCurrentUserFailure())
-          )
-        )}
-      )
+          catchError((errRes: HttpErrorResponse) => of(getCurrentUserFailure()))
+        );
+      })
     )
   );
-
 }
