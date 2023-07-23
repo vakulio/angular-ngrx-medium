@@ -5,7 +5,6 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from 'src/app/services/persistance.service';
-import { loginFailureAction, loginSuccessAction } from './login.action';
 import {
   getCurrentUserAction,
   getCurrentUserFailure,

@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './main-feed.component.html',
   styleUrls: ['./main-feed.component.scss'],
 })
-export class MainFeedComponent {}
+export class MainFeedComponent {
+  apiUrl = '/articles';
+}

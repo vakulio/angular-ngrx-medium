@@ -1,1 +1,26 @@
-<p>feed works!</p>
+<div *ngIf="isLoading$ | async">Loading...</div>
+<div *ngIf="error$ | async">Sone error happened...</div>
+<div *ngIf="data$ | async">
+  <article
+    class="article-preview"
+    *ngFor="let article of (data$ | async)?.articles">
+    <div class="article-meta">
+      <a [routerLink]="['/profiles', article.author.username]">
+        <img [src]="article.author.image" [alt]="article.author.username" />
+      </a>
+    </div>
+    <div class="info">
+      <a [routerLink]="['/profiles', article.author.username]">
+        {{ article.author.username }}
+      </a>
+      <span class="date">{{ article.createdAt }}</span>
+    </div>
+    <div class="pull-xs-right">ADD TO FAVORITES</div>
+    <a [routerLink]="['/articles', article.slug]" class="preview-link">
+      <h1>{{ article.title }}</h1>
+      <p>{{ article.description }}</p>
+      TAGS
+    </a>
+  </article>
+  PAGINATION
+</div>
