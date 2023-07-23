@@ -1,5 +1,5 @@
-<div *ngIf="isLoading$ | async">Loading...</div>
-<div *ngIf="error$ | async">Sone error happened...</div>
+<mcrx-loading></mcrx-loading>
+<mcrx-error-message *ngIf="error$ | async"></mcrx-error-message>
 <div *ngIf="data$ | async">
   <article
     class="article-preview"

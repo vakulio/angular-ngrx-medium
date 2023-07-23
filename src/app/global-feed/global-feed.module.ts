@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { GetFeedEffect } from './store/actions/getFeed.effect';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
+import { BannerComponent } from '../shared/banner/banner.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   declarations: [MainFeedComponent],
   imports: [
     CommonModule,
+    BannerComponent,
     RouterModule.forChild(routes),
     FeedComponent,
     EffectsModule.forFeature([GetFeedEffect]),

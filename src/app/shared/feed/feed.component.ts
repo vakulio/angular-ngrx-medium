@@ -8,15 +8,24 @@ import {
   feedSelector,
   isLoadingSelector,
 } from 'src/app/global-feed/store/selectors';
-import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'mcrx-feed[apiUrl]',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss'],
+  styles: [],
   standalone: true,
-  imports: [NgIf, AsyncPipe, NgFor, RouterLink],
+  imports: [
+    NgIf,
+    AsyncPipe,
+    NgFor,
+    RouterLink,
+    ErrorMessageComponent,
+    LoadingComponent,
+  ],
 })
 export class FeedComponent implements OnInit {
   @Input({

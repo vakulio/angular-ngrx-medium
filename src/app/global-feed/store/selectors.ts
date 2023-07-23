@@ -17,7 +17,6 @@ export const errorSelector = createSelector(
 export const feedSelector = createSelector(
   feedFeatureSelector,
   (feedState: IFeedState) => {
-    console.log(feedState);
     return feedState.data;
   }
 );
