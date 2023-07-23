@@ -11,7 +11,7 @@ import { Store, select } from '@ngrx/store';
 import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-topbar',
+  selector: 'mcrx-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss'],
   standalone: true,

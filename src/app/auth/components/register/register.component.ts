@@ -1,10 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { IBackendErr } from 'src/app/shared/types/backendErrors';
-import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
 import { IRegReq } from 'src/app/shared/types/registerReq.interface';
 import { registerAction } from 'src/app/store/actions/register.action';
 import {
@@ -13,7 +12,7 @@ import {
 } from 'src/app/store/selectors';
 
 @Component({
-  selector: 'app-register',
+  selector: 'mcrx-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { getCurrentUserAction } from './store/actions/getCurrentUser.action';
 
 @Component({
-  selector: 'app-root',
+  selector: 'mcrx-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {

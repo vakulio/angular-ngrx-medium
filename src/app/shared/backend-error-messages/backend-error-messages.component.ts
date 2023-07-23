@@ -3,14 +3,18 @@ import { IBackendErr } from '../types/backendErrors';
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-backend-error-messages[backendErrors]',
+  selector: 'mcrx-backend-error-messages[backendErrors]',
   templateUrl: './backend-error-messages.component.html',
   styleUrls: ['./backend-error-messages.component.scss'],
   standalone: true,
   imports: [NgFor],
 })
 export class BackendErrorMessagesComponent implements OnInit {
-  @Input('backendErrors') backendErrorsProps: IBackendErr;
+  @Input({
+    required: true,
+    alias: 'backendErrors',
+  })
+  backendErrorsProps: IBackendErr;
 
   errorMessages: string[];
 

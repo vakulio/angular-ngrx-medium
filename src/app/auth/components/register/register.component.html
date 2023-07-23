@@ -6,9 +6,9 @@
         <a [routerLink]="['/login']">Have an account?</a>
       </p>
 
-      <app-backend-error-messages
+      <mcrx-backend-error-messages
         *ngIf="backendErrors$ | async"
-        [backendErrors]="backendErrors$ | async"></app-backend-error-messages>
+        [backendErrors]="backendErrors$ | async"></mcrx-backend-error-messages>
       <form [formGroup]="form" (ngSubmit)="onSumbit()">
         <fieldset>
           <fieldset class="form-group">

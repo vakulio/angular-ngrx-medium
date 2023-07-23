@@ -11,7 +11,7 @@ import { LoginComponent } from './src/app/auth/components/login/login.component'
 import { TopbarComponent } from './shared/topbar/topbar.component';
 import { PersistanceService } from './services/persistance.service';
 import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
-
+import { GlobalFeedModule } from './global-feed/global-feed.module';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   providers: [
@@ -31,6 +31,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     TopbarComponent,
+    GlobalFeedModule,
   ],
 })
 export class AppModule {}
