@@ -12,6 +12,7 @@ import { TopbarComponent } from './shared/topbar/topbar.component';
 import { PersistanceService } from './services/persistance.service';
 import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
+import { YourFeedModule } from './your-feed/your-feed.module';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   providers: [
@@ -33,6 +34,7 @@ import { GlobalFeedModule } from './global-feed/global-feed.module';
     StoreRouterConnectingModule.forRoot(),
     TopbarComponent,
     GlobalFeedModule,
+    YourFeedModule,
   ],
 })
 export class AppModule {}

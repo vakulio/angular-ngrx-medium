@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainFeedComponent } from './main-feed/main-feed.component';
+import { YourFeedComponent } from './your-feed/your-feed.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FeedComponent } from '../shared/feed/feed.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -14,13 +14,13 @@ import { FeedTogglerComponent } from '../shared/feed-toggler/feed-toggler.compon
 
 const routes: Routes = [
   {
-    path: '',
-    component: MainFeedComponent,
+    path: 'feed',
+    component: YourFeedComponent,
   },
 ];
 
 @NgModule({
-  declarations: [MainFeedComponent],
+  declarations: [YourFeedComponent],
   imports: [
     CommonModule,
     BannerComponent,
@@ -33,4 +33,4 @@ const routes: Routes = [
     FeedTogglerComponent,
   ],
 })
-export class GlobalFeedModule {}
+export class YourFeedModule {}
