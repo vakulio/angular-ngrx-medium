@@ -24,7 +24,6 @@ export class RegisterEffect {
       switchMap(({ request }) =>
         this._authService.register(request).pipe(
           map((currentUser: ICurrentUser) => {
-            // window.localStorage.setItem('accessToken', currentUser.token)
             this._persistanceService.set('accessToken', currentUser.token);
             return registerSuccess({ currentUser });
           }),

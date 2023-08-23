@@ -8,6 +8,8 @@ import { GetFeedEffect } from './store/actions/getFeed.effect';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { BannerComponent } from '../shared/banner/banner.component';
+import { PopularTagsModule } from '../popular-tags/popular-tags.module';
+import { PopularTagsComponent } from '../popular-tags/popular-tags/popular-tags.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,8 @@ const routes: Routes = [
     FeedComponent,
     EffectsModule.forFeature([GetFeedEffect]),
     StoreModule.forFeature('feed', reducers),
+    PopularTagsModule,
+    PopularTagsComponent,
   ],
 })
 export class GlobalFeedModule {}
