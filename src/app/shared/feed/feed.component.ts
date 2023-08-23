@@ -15,6 +15,7 @@ import { LoadingComponent } from '../loading/loading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { environment } from 'src/environments/environment.development';
 import queryString from 'query-string';
+import { TaglistComponent } from '../taglist/taglist.component';
 
 @Component({
   selector: 'mcrx-feed[apiUrl]',
@@ -30,6 +31,7 @@ import queryString from 'query-string';
     LoadingComponent,
     PaginationComponent,
     DatePipe,
+    TaglistComponent,
   ],
 })
 export class FeedComponent implements OnInit, OnDestroy {

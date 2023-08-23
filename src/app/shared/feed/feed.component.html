@@ -20,7 +20,7 @@
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
       <h1>{{ article.title }}</h1>
       <p>{{ article.description }}</p>
-      TAGS
+      <mcrx-taglist [tagsProps]="article.tagList"></mcrx-taglist>
     </a>
   </article>
   <mcrx-pagination
