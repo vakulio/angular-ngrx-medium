@@ -13,6 +13,7 @@ import { PersistanceService } from './services/persistance.service';
 import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
 import { YourFeedModule } from './your-feed/your-feed.module';
+import { TagFeedModule } from './tag-feed/tag-feed.module';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   providers: [
@@ -35,6 +36,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
     TopbarComponent,
     GlobalFeedModule,
     YourFeedModule,
+    TagFeedModule,
   ],
 })
 export class AppModule {}

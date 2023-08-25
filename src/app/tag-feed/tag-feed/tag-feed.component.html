@@ -1,0 +1,14 @@
+<main class="home-page">
+  <mcrx-banner></mcrx-banner>
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <mcrx-feed-toggler [tagName]="tagName"></mcrx-feed-toggler>
+        <mcrx-feed [apiUrl]="apiUrl"></mcrx-feed>
+      </div>
+      <div class="col-md-3">
+        <mcrx-popular-tags></mcrx-popular-tags>
+      </div>
+    </div>
+  </div>
+</main>

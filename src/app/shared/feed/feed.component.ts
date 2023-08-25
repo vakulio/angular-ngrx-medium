@@ -1,4 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { getFeedAction } from 'src/app/global-feed/store/actions/getFeed.action';
@@ -34,7 +42,7 @@ import { TaglistComponent } from '../taglist/taglist.component';
     TaglistComponent,
   ],
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   @Input({
     required: true,
     alias: 'apiUrl',
@@ -55,6 +63,16 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.initializeValues();
     this.initializeListeners();
     this.fetchData();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlChaged =
+      !changes['apiUrlProps'].firstChange &&
+      changes['apiUrlProps'].currentValue !==
+        changes['apiUrlProps'].previousValue;
+    if (isApiUrlChaged) {
+      this.fetchData();
+    }
   }
 
   ngOnDestroy(): void {
