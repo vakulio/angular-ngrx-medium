@@ -1,0 +1,46 @@
+<div class="article-page">
+  <div class="banner">
+    <div class="container" *ngIf="article">
+      <h1>{{ article.title }}</h1>
+      <div class="article-meta">
+        <a [routerLink]="['/profiles', article.author.username]">
+          <img [src]="article.author.image" [alt]="article.author.username" />
+        </a>
+        <div class="info">
+          <a [routerLink]="['/profiles', article.author.username]">
+            {{ article.author.username }}
+          </a>
+          <span class="date">
+            {{ article.createdAt }}
+          </span>
+        </div>
+        <span *ngIf="isAuthor$ | async">
+          <a
+            class="btn btn-outline-secondary btn-sm"
+            [routerLink]="['/articles', article.slug, 'edit']">
+            <i class="ion-edit"></i>
+            Edit Article
+          </a>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="deleteArticle()">
+            Delete
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="container page">
+    <mcrx-loading *ngIf="isLoading$ | async"></mcrx-loading>
+    <mcrx-error-message *ngIf="error$ | async"></mcrx-error-message>
+
+    <article class="row article-content" *ngIf="article">
+      <div class="col-xs-12">
+        <div>
+          <p>{{ article.body }}</p>
+        </div>
+        <mcrx-taglist [tagsProps]="article.tagList"></mcrx-taglist>
+      </div>
+    </article>
+  </div>
+</div>

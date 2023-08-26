@@ -14,6 +14,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
 import { YourFeedModule } from './your-feed/your-feed.module';
 import { TagFeedModule } from './tag-feed/tag-feed.module';
+import { ArticleModule } from './article/article.module';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   providers: [
@@ -37,6 +38,7 @@ import { TagFeedModule } from './tag-feed/tag-feed.module';
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
+    ArticleModule,
   ],
 })
 export class AppModule {}
