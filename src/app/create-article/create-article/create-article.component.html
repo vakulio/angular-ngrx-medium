@@ -1,0 +1,6 @@
+<mcrx-article-form
+  [initialValues]="initialValues"
+  [isSubmitting]="isSubmitting$ | async"
+  [errors]="backendErrors$ | async"
+  (articleSumbitEvent)="onSubmit($event)">
+</mcrx-article-form>
