@@ -16,7 +16,12 @@
       &nbsp;
       <span class="date">{{ article.createdAt | date }}</span>
     </div>
-    <div class="pull-xs-right">ADD TO FAVORITES</div>
+    <div class="pull-xs-right">
+      <mcrx-add-to-favorites
+        [isFavorited]="article.favorited"
+        [favoritesCount]="article.favoritesCount"
+        [articleSlug]="article.slug"></mcrx-add-to-favorites>
+    </div>
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
       <h1>{{ article.title }}</h1>
       <p>{{ article.description }}</p>

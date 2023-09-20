@@ -24,6 +24,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { environment } from 'src/environments/environment.development';
 import queryString from 'query-string';
 import { TaglistComponent } from '../taglist/taglist.component';
+import { AddToFavoritesComponent } from '../add-to-favorites/add-to-favorites.component';
 
 @Component({
   selector: 'mcrx-feed[apiUrl]',
@@ -40,6 +41,7 @@ import { TaglistComponent } from '../taglist/taglist.component';
     PaginationComponent,
     DatePipe,
     TaglistComponent,
+    AddToFavoritesComponent,
   ],
 })
 export class FeedComponent implements OnInit, OnDestroy, OnChanges {
