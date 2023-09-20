@@ -18,6 +18,8 @@ import { ArticleModule } from './article/article.module';
 import { CreateArticleModule } from './create-article/create-article.module';
 import { EditArticleModule } from './edit-article/edit-article.module';
 import { SettingsModule } from './settings/settings.module';
+import { EffectsModule } from '@ngrx/effects';
+import { AddToFavoriteEffect } from './shared/add-to-favorites/store/actions/addToFavorites.effect';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   providers: [
@@ -36,6 +38,7 @@ import { SettingsModule } from './settings/settings.module';
     AuthModule,
     StoreModule.forRoot({ router: routerReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forFeature([AddToFavoriteEffect]),
     StoreRouterConnectingModule.forRoot(),
     TopbarComponent,
     GlobalFeedModule,

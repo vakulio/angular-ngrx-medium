@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from 'src/app/services/auth.service';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { ICurrentUser } from 'src/app/shared/types/currentUser.interface';
-import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from 'src/app/services/persistance.service';
 import {
   getCurrentUserAction,
@@ -28,7 +27,7 @@ export class GetCurrentUserEffect {
           map((currentUser: ICurrentUser) => {
             return getCurrentUserSuccess({ currentUser });
           }),
-          catchError((errRes: HttpErrorResponse) => of(getCurrentUserFailure()))
+          catchError(() => of(getCurrentUserFailure()))
         );
       })
     )
