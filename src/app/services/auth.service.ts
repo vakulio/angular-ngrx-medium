@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { IRegReq } from '../shared/types/registerReq.interface';
-import { ICurrentUser } from '../shared/types/currentUser.interface';
+import {
+  ICurrentUser,
+  ICurrentUserInput,
+} from '../shared/types/currentUser.interface';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { IAuthResponse } from '../shared/types/authResponse.interface';
@@ -30,5 +33,12 @@ export class AuthService {
   getCurrentUser(): Observable<ICurrentUser> {
     const url = `${environment.apiUrl}/user`;
     return this.http.get(url).pipe(map(this.getUser));
+  }
+
+  updateCurrentUser(
+    currentUserInput: ICurrentUserInput
+  ): Observable<ICurrentUser> {
+    const url = `${environment.apiUrl}/user`;
+    return this.http.put(url, currentUserInput).pipe(map(this.getUser));
   }
 }

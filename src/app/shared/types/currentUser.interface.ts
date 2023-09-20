@@ -8,3 +8,7 @@ export interface ICurrentUser {
   image: string | null;
   token: string;
 }
+
+export interface ICurrentUserInput extends ICurrentUser {
+  password: string;
+}

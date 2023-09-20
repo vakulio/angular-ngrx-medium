@@ -14,4 +14,10 @@ export enum ActionTypes {
   GET_POPULAR_TAGS = '[PopularTags] Get popular tags',
   GET_POPULAR_TAGS_SUCCESS = '[PopularTags] Get popular tags success',
   GET_POPULAR_TAGS_FAILURE = '[PopularTags] Get popular tags failure',
+
+  UPDATE_CURRENT_USER = '[Auth] Update current user',
+  UPDATE_CURRENT_USER_SUCCESS = '[Auth] Update current user success',
+  UPDATE_CURRENT_USER_FAILURE = '[Auth] Update current user failure',
+
+  LOGOUT = '[Auth] Logout',
 }
