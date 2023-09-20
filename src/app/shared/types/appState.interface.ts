@@ -5,6 +5,7 @@ import { IFeedState } from './feedState.interface';
 import { PopularTagsStateI } from './popularTagsState.interface';
 import { IEditArticleState } from 'src/app/edit-article/types/editArticleState.interface';
 import { ISettingState } from 'src/app/settings/types/settingsState.interface';
+import { IUserProfileState } from './userProfilesState.interface';
 
 export interface IAppState {
   popularTags: PopularTagsStateI;
@@ -14,4 +15,5 @@ export interface IAppState {
   createArticle: ICreateArticleState;
   editArticle: IEditArticleState;
   settings: ISettingState;
+  userProfile: IUserProfileState;
 }

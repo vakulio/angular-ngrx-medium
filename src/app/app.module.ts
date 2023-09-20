@@ -20,6 +20,7 @@ import { EditArticleModule } from './edit-article/edit-article.module';
 import { SettingsModule } from './settings/settings.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AddToFavoriteEffect } from './shared/add-to-favorites/store/actions/addToFavorites.effect';
+import { UserProfileModule } from './user-profile/user-profile.module';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   providers: [
@@ -48,6 +49,7 @@ import { AddToFavoriteEffect } from './shared/add-to-favorites/store/actions/add
     ArticleModule,
     EditArticleModule,
     SettingsModule,
+    UserProfileModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,9 @@
+<button
+  (click)="handleFollow()"
+  class="btn btn-sm action-btn btn-outline-secondary">
+  <ng-container *ngIf="isFollowedValue; else notFollowed">
+    Unfollow
+  </ng-container>
+
+  <ng-template #notFollowed> Follow </ng-template>
+</button>
