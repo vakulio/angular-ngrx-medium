@@ -1,0 +1,8 @@
+<mcrx-loading *ngIf="isLoading$ | async"></mcrx-loading>
+<mcrx-article-form
+  *ngIf="initializeValues$ | async"
+  [initialValues]="initializeValues$ | async"
+  [isSubmitting]="isSubmitting$ | async"
+  [errors]="backendErrors$ | async"
+  (articleSumbitEvent)="onSubmit($event)">
+</mcrx-article-form>
